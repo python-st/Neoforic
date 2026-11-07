@@ -5,14 +5,34 @@
 #import
 
 import json;
+import os;
 
 #========================================#
 
 #code
 
-def write_json(data, filename):
+def write_json_append(data, filename):
+    existing_data = [];
+    
+    # read
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as f:
+            try:
+                existing_data = json.load(f);
+
+                if isinstance(existing_data, dict):
+                    existing_data = [existing_data];
+            except json.JSONDecodeError:
+                existing_data = [];
+
+    # 加入
+    if isinstance(data, list):
+        existing_data.extend(data);
+    else:
+        existing_data.append(data);
+
     with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=4);
+        json.dump(existing_data, f, ensure_ascii=False, indent=4);
 
 #========================================#
 
