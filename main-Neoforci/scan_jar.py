@@ -7,7 +7,8 @@
 import glob;
 import zipfile;
 import re;
-from write_json import write_json;
+import os;
+from write_json import write_json_append;
 
 #========================================#
 
@@ -18,7 +19,10 @@ jar_files = glob.glob("*.jar")
 #code
 
 def scan_jar_file():
-    
+
+    if os.path.exists("mod_data.json"):
+        os.remove("mod_data.json");
+   
     for jar_path in jar_files:
         
         try:
@@ -31,8 +35,8 @@ def scan_jar_file():
                     # fabric - id
                     id_match = re.search(r'"id"\s*:\s*"([^"]+)"', content);
                     mod_id = id_match.group(1) if id_match else "Unknown";
-                    data_2 = {"type": "Fabric", "id": mod_id};
-                    write_json(data_2, f"{jar_path}.json");
+                    data_2 = {"type": "Fabric", "id": mod_id, "jar_path": jar_path};
+                    write_json_append(data_2, "mod_data.json");
                     print(f"[Fabric] 文件: {jar_path} - ID: {mod_id}");
                     continue;
                 
@@ -41,8 +45,8 @@ def scan_jar_file():
                     content = jar.read("META-INF/neoforge.mods.toml").decode('utf-8', errors='ignore');
                     id_match = re.search(r'modId\s*=\s*"([^"]+)"', content);
                     mod_id = id_match.group(1) if id_match else "Unknown";
-                    data_2 = {"type": "NeoForge", "id": mod_id};
-                    write_json(data_2, f"{jar_path}.json");
+                    data_2 = {"type": "NeoForge", "id": mod_id, "jar_path": jar_path};
+                    write_json_append(data_2, "mod_data.json");
                     print(f"[NeoForge] 文件: {jar_path} - ID: {mod_id}");
                     continue;
                 
@@ -55,26 +59,26 @@ def scan_jar_file():
 
                     # 3a.neoforge
                     if re.search(r'modId\s*=\s*"neoforge"', toml_content) or "NeoForge" in toml_content:
-                        data_2 = {"type": "NeoForge", "id": mod_id};
-                        write_json(data_2, f"{jar_path}.json");
+                        data_2 = {"type": "NeoForge", "id": mod_id, "jar_path": jar_path};
+                        write_json_append(data_2, "mod_data.json");
                         print(f"[NeoForge] 文件: {jar_path} - ID: {mod_id}");
                         continue;
                     
                     # 3b.Forge
-                    data_2 = {"type": "Forge", "id": mod_id};
-                    write_json(data_2, f"{jar_path}.json");
+                    data_2 = {"type": "Forge", "id": mod_id, "jar_path": jar_path};
+                    write_json_append(data_2, "mod_data.json");
                     print(f"[Forge] 文件: {jar_path} - ID: {mod_id}");
                     continue;
                 
                 print(f"[Unknown] 文件: {jar_path}");
 
         except zipfile.BadZipFile:
-            data_2 = {"type": "Error", "id": "损坏的压缩包"};
-            write_json(data_2, f"{jar_path}.json");
+            data_2 = {"type": "Error", "id": "损坏的压缩包", "jar_path": jar_path};
+            write_json_append(data_2, "mod_data.json");
             print(f"[Error] {jar_path} - 损坏的压缩包");
         except Exception as e:
-            data_2 = {"type": "Error", "id": str(e)};
-            write_json(data_2, f"{jar_path}.json");
+            data_2 = {"type": "Error", "id": str(e), "jar_path": jar_path};
+            write_json_append(data_2, "mod_data.json");
             print(f"[Error] {jar_path} - {str(e)}");
 
 #========================================#
