@@ -4,6 +4,6 @@
 
 # 更新内容：
 
-识别mod的使用的mod加载器是什么并写在mod_data.json文件。\n
-java内核接收后输出。\n
-加入了查重。\n
+识别mod的使用的mod加载器是什么并写在mod_data.json文件。
+java内核接收后输出。
+加入了查重。
