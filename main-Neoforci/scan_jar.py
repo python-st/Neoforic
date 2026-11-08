@@ -76,6 +76,11 @@ def scan_jar_file():
                         write_json_append(data_2, "mod_data.json");
                         print(f"[NeoForge] 文件: {jar_path} - ID: Unknown");
                         continue;
+                    else:
+                        data_2 = {"type": "Forge", "id": "Unknown", "jar_path": jar_path};
+                        write_json_append(data_2, "mod_data.json");
+                        print(f"[Forge] 文件: {jar_path} - ID: Unknown");
+                        continue;
                 
                 print(f"[Unknown] 文件: {jar_path}");
 
