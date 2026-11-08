@@ -42,6 +42,16 @@ def write_json_append(data, filename):
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(existing_data, f, ensure_ascii=False, indent=4);
 
+def read_json():
+    
+    if not os.path.exists("mod_data.json"):
+        return 404;
+    else:
+        with open("mod_data.json", 'r', encoding="utf-8") as f:
+            data = json.load(f);
+            return data;
+            
+
 #========================================#
 
 if __name__ == "__main__":

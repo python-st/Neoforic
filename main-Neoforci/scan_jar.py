@@ -8,11 +8,11 @@ import glob;
 import zipfile;
 import re;
 import os;
-from write_json import write_json_append;
+from write_json import write_json_append , read_json;
 
 #========================================#
 
-jar_files = glob.glob("*.jar")
+jar_files = glob.glob("*.jar");
 
 #========================================#
 
@@ -94,3 +94,20 @@ def scan_jar_file():
             print(f"[Error] {jar_path} - {str(e)}");
 
 #========================================#
+
+def ver_jar():
+    mod_dict = {};
+    for mod in read_json():
+        mod_id = mod["id"];
+        if mod_id in mod_dict:
+            print(f"[重复] 文件: {mod['jar_path']} - ID: {mod_id}");
+        else:
+            mod_dict[mod_id] = mod;
+            
+    return list(mod_dict.values());
+
+#========================================#
+
+if __name__ == "__main__":
+    #怎么可能啊，绝对不可能。
+    print("怎么可能啊，绝对不可能。");
