@@ -1,0 +1,42 @@
+[
+    {
+        "type": "NeoForge",
+        "id": "architectury",
+        "jar_path": "architectury-neoforge-22.0.5.jar"
+    },
+    {
+        "type": "Fabric",
+        "id": "mezz_config",
+        "jar_path": "mezz_config-26.3-fabric-0.6.11.jar"
+    },
+    {
+        "type": "NeoForge",
+        "id": "Unknown",
+        "jar_path": "mezz_config-26.3-neoforge-0.6.11-standalone.jar"
+    },
+    {
+        "type": "Fabric",
+        "id": "jei",
+        "jar_path": "[JEI物品管理器] jei-26.3-fabric-31.17.0.109.jar"
+    },
+    {
+        "type": "NeoForge",
+        "id": "jei",
+        "jar_path": "[JEI物品管理器] jei-26.3-neoforge-31.17.0.109.jar"
+    },
+    {
+        "type": "NeoForge",
+        "id": "entityculling",
+        "jar_path": "[实体渲染机制优化] entityculling-neoforge-1.11.3-mc26.3.jar"
+    },
+    {
+        "type": "Fabric",
+        "id": "sodium",
+        "jar_path": "[钠] sodium-fabric-0.9.3-beta.3+mc26.3.jar"
+    },
+    {
+        "type": "NeoForge",
+        "id": "sodium",
+        "jar_path": "[钠] sodium-neoforge-0.9.3-beta.3+mc26.3.jar"
+    }
+]

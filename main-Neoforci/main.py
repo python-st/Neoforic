@@ -6,8 +6,8 @@
 
 import os;
 import glob;
-import json;
 import threading;
+import subprocess;
 from scan_jar import scan_jar_file;
 
 #========================================#
@@ -23,6 +23,8 @@ def main():
     monitor = threading.Thread(target=scan_jar_file);
     monitor.start();
     monitor.join();
+    subprocess.run(["java", "main", "mod_data.json"], cwd=run_path);
+    
 
 #========================================#
 
