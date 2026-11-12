@@ -2,10 +2,6 @@
 
 # main.py
 
-from print_log import w_log; 
-
-w_log("main_log", "INFO", "main.py启动 √ ");
-
 #========================================#
 
 #import
@@ -15,6 +11,9 @@ import glob;
 import threading;
 import subprocess;
 from scan_jar import scan_jar_file;
+from print_log import w_log;
+
+w_log("main_log", "INFO", "main.py启动 √ ");
 
 w_log("main_log", "INFO", "导入完成 √ ");
 
