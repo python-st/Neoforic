@@ -1,5 +1,7 @@
 # -*- coding : utf-8 -*-
 
+# write_json.py
+
 #========================================#
 
 #import
@@ -11,7 +13,7 @@ import os;
 
 #code
 
-def write_json_append(data, filename):
+def write_json_append(data, filename = "mod_data.json"):
 
     if not os.path.exists(filename):
 
@@ -45,7 +47,7 @@ def write_json_append(data, filename):
 def read_json():
     
     if not os.path.exists("mod_data.json"):
-        return 404;
+        return [];
     else:
         with open("mod_data.json", 'r', encoding="utf-8") as f:
             data = json.load(f);
