@@ -51,7 +51,7 @@ class NeoforciScanner:
 
                 with zipfile.ZipFile(jar_path, "r") as jar:
 
-                    file_list = jar.namelits();
+                    file_list = jar.namelist();
 
                     # 1.Fabric
                     if "fabric.mod.json" in file_list:
