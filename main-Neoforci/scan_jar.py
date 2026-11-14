@@ -12,12 +12,17 @@ import re;
 import os;
 from write_json import write_json_append , read_json;
 from print_log import w_log;
+from setup import mods_dir;
 
 w_log("scan_log", "INFO", "scan_jar.py启动 √ ");
 
 #========================================#
 
-jar_files = glob.glob("*.jar");
+
+if not os.path.exists(mods_dir()):
+    os.makedirs(mods_dir());
+else:
+    jar_files = glob.glob(os.path.join(mods_dir(), "*.jar"));
 
 #========================================#
 
